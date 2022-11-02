@@ -1,3 +1,4 @@
+#include <algorithm>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -8,24 +9,27 @@ using namespace std;
 void solve() {
     int n, q;
     cin >> n >> q;
-    vector<int> a(n), ps(n);
+    vector<long long> pref;
+    pref.push_back(0);
+    vector<int> prefmax;
     for(int i = 0; i < n; i++) {
-        cin >> a[i];
-        if(i) ps[i] = a[i] + ps[i-1];
-        else ps[i] = a[i];
-    }
+        int x;
+        cin >> x;
+        pref.push_back(pref.back() + x);
 
-    // 1 2 1 5
-    // 1 
-    // 1 2 4 9 10
-    // 1 
+        if(i == 0) 
+            prefmax.push_back(i);
+        else 
+            prefmax.push_back(max(prefmax.back(), x));
+    }
 
     while(q--) {
         int k;
         cin >> k;
-
-
+        int ind = upper_bound(prefmax.begin(), prefmax.end(), k) - prefmax.begin();
+        cout << pref[ind] << " ";
     }
+    cout << "\n";
 }
 
 int32_t main() {
