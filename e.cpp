@@ -18,7 +18,7 @@ void solve() {
         pref.push_back(pref.back() + x);
 
         if(i == 0) 
-            prefmax.push_back(i);
+            prefmax.push_back(x);
         else 
             prefmax.push_back(max(prefmax.back(), x));
     }
